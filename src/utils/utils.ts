@@ -66,7 +66,7 @@ export const downloadFileByUrl = (url: string, name: string, type: string) => {
 };
 
 // 是否不是community版本
-export const isNoCommunity = !(localStorage.getItem(SystemConst.VERSION_CODE) === 'community');
+export const isNoCommunity = (localStorage.getItem(SystemConst.VERSION_CODE) === 'community');
 
 
 /**

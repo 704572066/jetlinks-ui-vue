@@ -110,6 +110,41 @@
                     </j-select>
                 </j-form-item>
                 <j-form-item
+                    name="orgId"
+                    :rules="[
+                        {
+                            required: true,
+                            message: '请选择所属组织',
+                        },
+                    ]"
+                >
+                    <template #label>
+                        <span
+                            >所属组织
+                            <j-tooltip title="">
+                                <AIcon
+                                    type="QuestionCircleOutlined"
+                                    style="margin-left: 2px"
+                                />
+                            </j-tooltip>
+                        </span>
+                    </template>
+                    <j-select
+                        showSearch
+                        v-model:value="modelRef.productId"
+                        :disabled="!!data?.id"
+                        placeholder=""
+                    >
+                        <j-select-option
+                            :value="item.id"
+                            v-for="item in productList"
+                            :key="item.id"
+                            :label="item.name"
+                            >{{ item.name }}</j-select-option
+                        >
+                    </j-select>
+                </j-form-item>
+                <j-form-item
                     label="说明"
                     name="describe"
                     :rules="[
