@@ -859,6 +859,8 @@ const handleSearch = (_params: any) => {
         });
         return item1;
     });
+    const orgId = localStorage.getItem("Org-Id");
+    newParams.push({type: "or", value: orgId, termType: "eq", column: "orgId"})
     params.value = { terms: newParams || [] };
 };
 

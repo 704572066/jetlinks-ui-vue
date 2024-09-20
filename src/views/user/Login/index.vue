@@ -344,6 +344,7 @@ const {loading, run: loginFn} = useRequest(authLogin, {
 
     removeTimer()
     if (userResp.success) {
+      LocalStore.set("Org-Id", userResp.result.orgList[0]?.id);
       const isAdmin = userResp.result.username === 'admin'
       store.$patch({
         userInfos: {
