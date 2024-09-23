@@ -232,6 +232,8 @@ import { accessConfigTypeFilter } from '@/utils/setting';
 import TagSearch from './components/TagSearch.vue';
 import { Modal } from 'ant-design-vue';
 import { isNoCommunity } from '@/utils/utils';
+import {useUserInfo} from '@/store/userInfo';
+const userInfo = useUserInfo();
 const instanceRef = ref<Record<string, any>>({});
 const params = ref<Record<string, any>>({});
 const _selectedRowKeys = ref<string[]>([]);
@@ -859,8 +861,11 @@ const handleSearch = (_params: any) => {
         });
         return item1;
     });
-    const orgId = localStorage.getItem("Org-Id");
-    newParams.push({type: "or", value: orgId, termType: "eq", column: "orgId"})
+    const user = JSON.parse(localStorage.getItem("userInfo")|| "null");
+    // alert(user.orgList.length)
+    if(!user.isAdmin) {
+        newParams.push({type: "or", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "orgId"})
+    }
     params.value = { terms: newParams || [] };
 };
 

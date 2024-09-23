@@ -344,7 +344,7 @@ const {loading, run: loginFn} = useRequest(authLogin, {
 
     removeTimer()
     if (userResp.success) {
-      LocalStore.set("Org-Id", userResp.result.orgList[0]?.id);
+      // LocalStore.set("userInfo", JSON.stringify(userResp.result));
       const isAdmin = userResp.result.username === 'admin'
       store.$patch({
         userInfos: {
@@ -353,6 +353,7 @@ const {loading, run: loginFn} = useRequest(authLogin, {
           isAdmin: userResp.result.username === 'admin'
         },
       })
+      LocalStore.set("userInfo", store.userInfos);
       if (isAdmin) {
         const initResp = await getInitSet()
         if (initResp.success && !initResp.result?.length) {
