@@ -307,7 +307,7 @@ export const useColumns = (dataSource: Ref<MetadataItem[]>, type?: MetadataType,
     {
       title: '是否异步',
       dataIndex: 'async',
-      width: 120,
+      width: 80,
       // sort: {
       //   sortKey: ['async'],
       //   dataSource: () => {
@@ -331,7 +331,7 @@ export const useColumns = (dataSource: Ref<MetadataItem[]>, type?: MetadataType,
     {
       title: '输出参数',
       dataIndex: 'output',
-      width: 240,
+      width: 200,
       form: {
         rules: [{
           asyncValidator: async (rule: any, value: any) => {
@@ -367,7 +367,7 @@ export const useColumns = (dataSource: Ref<MetadataItem[]>, type?: MetadataType,
     {
       title: '说明',
       dataIndex: 'description',
-      width: 220,
+      width: 140,
       form: {
         rules: [
           { max: 20, message: '最多可输入20个字符' },
