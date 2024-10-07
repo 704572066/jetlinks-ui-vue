@@ -864,7 +864,7 @@ const handleSearch = (_params: any) => {
     const user = JSON.parse(localStorage.getItem("userInfo")|| "null");
     // alert(user.orgList.length)
     if(!user.isAdmin) {
-        newParams.push({type: "or", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "orgId"})
+        newParams.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "orgId"})
     }
     params.value = { terms: newParams || [] };
 };

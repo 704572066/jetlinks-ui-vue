@@ -371,6 +371,8 @@ let params: any = ref({
     sorts: [{ name: 'alarmTime', order: 'desc' }],
     terms: [],
 });
+// let user = JSON.parse(localStorage.getItem("userInfo")|| "null");
+  
 const handleSearch = async (params: any) => {
     const resp: any = await query(params);
     if (resp.status === 200) {
@@ -395,7 +397,14 @@ const handleSearch = async (params: any) => {
 };
 
 const search = (data: any) => {
+
+    const user = JSON.parse(localStorage.getItem("userInfo")|| "null");
+    
     params.value.terms = [...data?.terms];
+    // alert(user.orgList.length)
+    if(!user.isAdmin) {
+        params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "targetId"})
+    }
     if (props.type !== 'all' && !props.id) {
         params.value.terms.push({
             termType: 'eq',
@@ -499,6 +508,7 @@ const showDrawer = (data: any) => {
     }
 };
 onMounted(() => {
+   
     if (props.type !== 'all' && !props.id) {
         params.value.terms = [
             {
@@ -521,6 +531,11 @@ onMounted(() => {
     }
     if (props.type === 'all') {
         params.value.terms = [];
+    }
+    const user = JSON.parse(localStorage.getItem("userInfo")|| "null");
+    
+    if(!user.isAdmin) {
+        params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "targetId"})
     }
 });
 </script>
