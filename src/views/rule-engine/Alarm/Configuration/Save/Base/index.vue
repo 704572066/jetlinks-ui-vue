@@ -69,6 +69,21 @@
                         </j-radio-button>
                     </j-radio-group>
                 </j-form-item>
+                
+                <j-form-item label="app告警消息是否显示灭火操作" name="fireInvoke">
+                    <j-radio-group
+                        v-model:value="form.fireInvoke"
+                        class="invokeSelect"
+                    >
+                        <j-radio :value="true"
+                            >是</j-radio
+                        >
+                        <j-radio :value="false"
+                            >否</j-radio
+                        >
+                    </j-radio-group>
+                </j-form-item>
+                                            
                 <j-form-item label="说明" name="description">
                     <j-textarea
                         v-model:value="form.description"
@@ -175,6 +190,12 @@ const rule = {
             message: '请选择级别',
         },
     ],
+    fireInvoke: [
+        {
+            required: true,
+            message: '请选择启动没火操作',
+        },
+    ],
     description: [
         {
             max: 200,
@@ -187,6 +208,7 @@ let form = ref({
     targetType: '',
     name: '',
     description: '',
+    fireInvoke: false,
 });
 let options = ref();
 let levelOption = ref();

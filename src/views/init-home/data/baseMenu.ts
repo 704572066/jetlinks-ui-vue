@@ -872,6 +872,232 @@ export default [
         ],
       },
       {
+        code: 'video',
+        name: '测试',
+        owner: 'iot',
+        //parentId: '1',
+        id: '4b690b89c74819346ba90024f1fece68',
+        url: '/iot/video',
+        icon: 'PlayCircleOutlined',
+        sortIndex: 7,
+        permissions: [],
+        showPage: [],
+        children: [
+          {
+            code: 'video/Instance',
+            name: '流',
+            owner: 'iot',
+            //parentId: '1-3',
+            id: '1c7641813c04134e345edbd240fb2691',
+            url: '/iot/video/Instance',
+            icon: 'VideoCameraOutlined',
+            sortIndex: 1,
+            accessSupport: { text: "支持", value: "support" },
+            supportDataAccess: true,
+            assetType: 'device',
+            showPage: ['device-instance'],
+            permissions: [
+              {
+                permission: 'transparent-codec',
+                actions: ['query'],
+              },
+              {
+                permission: 'protocol-supports',
+                actions: ['query'],
+              },
+              {
+                permission: 'device-api',
+                actions: ['query-device-events'],
+              },
+              {
+                permission: 'things-collector',
+                actions: ['save', 'delete'],
+              },
+              {
+                permission: 'edge-operations',
+                actions: ['invoke'],
+              },
+              {
+                permission: 'device-gateway',
+                actions: ['query'],
+              },
+              {
+                permission: 'system_config',
+                actions: ['query'],
+              },
+            ],
+            buttons: [
+              {
+                id: 'view',
+                name: '查看',
+                permissions: [
+                  {
+                    permission: 'device-product',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-instance',
+                    actions: ['query'],
+                  },
+                ],
+              },
+              {
+                id: 'export',
+                name: '导出',
+                permissions: [
+                  {
+                    permission: 'device-gateway',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-product',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-instance',
+                    actions: ['query', 'export'],
+                  },
+                ],
+              },
+              {
+                id: 'import',
+                name: '导入',
+                permissions: [
+                  {
+                    permission: 'device-gateway',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-product',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-instance',
+                    actions: ['import', 'query'],
+                  },
+                  {
+                    permission: 'file',
+                    actions: ['upload-static'],
+                  },
+                ],
+              },
+              {
+                id: 'update',
+                name: '编辑',
+                permissions: [
+                  {
+                    permission: 'file',
+                    actions: ['upload-static'],
+                  },
+                  {
+                    permission: 'visualization',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'organization',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-opt-api',
+                    actions: ['read-property', 'invoke-function', 'write-property'],
+                  },
+                  {
+                    permission: 'device-gateway',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'dictionary',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-category',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-mapping',
+                    actions: ['query', 'save'],
+                  },
+                  {
+                    permission: 'device-instance',
+                    actions: ['query', 'save'],
+                  },
+                  {
+                    permission: 'device-product',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'media-server',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'dashboard',
+                    actions: ['query'],
+                  },
+                ],
+              },
+              {
+                id: 'action',
+                name: '启/禁用',
+                permissions: [
+                  {
+                    permission: 'device-gateway',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-product',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-instance',
+                    actions: ['enable', 'disable', 'query'],
+                  },
+                ],
+              },
+              {
+                id: 'delete',
+                name: '删除',
+                permissions: [
+                  {
+                    permission: 'device-product',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-instance',
+                    actions: ['query', 'delete'],
+                  },
+                  {
+                    permission: 'device-gateway',
+                    actions: ['query'],
+                  },
+                ],
+              },
+              {
+                id: 'add',
+                name: '新增',
+                permissions: [
+                  {
+                    permission: 'file',
+                    actions: ['upload-static'],
+                  },
+                  {
+                    permission: 'device-product',
+                    actions: ['query'],
+                  },
+                  {
+                    permission: 'device-instance',
+                    actions: ['query', 'save'],
+                  },
+                  {
+                    permission: 'device-gateway',
+                    actions: ['query'],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
         code: 'link',
         name: '运维管理',
         owner: 'iot',
