@@ -88,7 +88,7 @@ export default defineConfig(({ mode}) => {
           proxy: {
               [env.VITE_APP_BASE_API]: {
                   // target: 'http://192.168.32.226:8844',
-                //   target: 'http://192.168.0.101:8848',
+                //   target: 'http://192.168.0.102:8848',
                 //   target: 'http://192.168.31.55:8848', //张本地
                   target: 'http://172.20.10.2:8848', // 120测试
                 // target: 'http://121.41.12.199:8848', // 本地开发环境

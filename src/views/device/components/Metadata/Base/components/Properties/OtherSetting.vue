@@ -228,8 +228,34 @@
                             >
                         </a-form>
                     </j-collapse-panel>
+                    <j-collapse-panel key="extra" >
+                        <template #header>
+                            
+                                    属性显示
+<j-tooltip
+                                title="用于app显示属性控制"
+                            >
+                                <AIcon
+                                    type="ExclamationCircleOutlined"
+                                    style="padding-left: 12px; padding-top: 4px"
+                                />
+                            </j-tooltip>
+                                
+                        </template>
+                        <j-switch
+                                v-model:checked="
+                                        configValue['isDisplay']
+                                    "
+                                :checked="configValue['isDisplay'] === 1"
+                                checked-children="显示"
+                                un-checked-children="隐藏"
+                                
+                            />
+                    
+                    </j-collapse-panel>
                 </j-collapse>
             </j-scrollbar>
+           
             <div v-else style="padding-top: 24px">
                 <j-empty description="没有动态配置项" />
             </div>
