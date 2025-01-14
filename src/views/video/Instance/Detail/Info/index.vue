@@ -117,7 +117,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useInstanceStore } from '@/store/instance';
+import { useInstanceStore } from '@/store/videoInstance';
 import Save from '../../Save/index.vue';
 import Config from './components/Config/index.vue';
 import Tags from './components/Tags/index.vue';

@@ -4,7 +4,7 @@ import { detail } from '@/api/video/instance'
 import { onlyMessage } from "@/utils/comm"
 
 export const useInstanceStore = defineStore({
-  id: 'device',
+  id: 'video',
   state: () => ({
     current: {} as VideoDeviceInstance,
     detail: {} as VideoDeviceInstance,
