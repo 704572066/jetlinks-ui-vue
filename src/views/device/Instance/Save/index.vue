@@ -130,6 +130,38 @@
                     </j-tree-select>
                 </j-form-item>
                 <j-form-item
+                            label="安装地址"
+                            name="deviceAddress"
+                            :rules="[
+                                {
+                                    required: true,
+                                    message: '请输入安装地址',
+                                },
+                                {
+                                    max: 64,
+                                    message: '最多输入64个字符',
+                                },
+                            ]"
+                        >
+                            <j-input
+                                v-model:value="modelRef.deviceAddress"
+                                placeholder="请输入安装地址"
+                            />
+                </j-form-item>
+                <j-form-item
+                            label="经纬度"
+                            name="geoPoint"
+                        >
+                    <!-- <GeoComponent
+                        v-model:point="modelRef.geoPoint"
+                    /> -->
+                    <ValueItem
+                        v-model:modelValue="modelRef.geoPoint"
+                        itemType="geoPoint"
+                        placeholder="请输入经纬度"
+                    />
+                </j-form-item>
+                <j-form-item
                     label="说明"
                     name="describe"
                     :rules="[
@@ -155,6 +187,7 @@
 import { queryNoPagingPost, queryOrgThree } from '@/api/device/product';
 import { isExists, update } from '@/api/device/instance';
 import { getImage, onlyMessage } from '@/utils/comm';
+// import GeoComponent from '@/components/GeoComponent/index.vue';
 import encodeQuery from '@/utils/encodeQuery';
 const emit = defineEmits(['close', 'save']);
 const props = defineProps({
@@ -172,6 +205,8 @@ const modelRef = reactive({
     productId: undefined,
     id: undefined,
     name: '',
+    deviceAddress: '其他',
+    geoPoint: '',
     orgId: undefined,
     orgName: '',
     describe: '',
@@ -190,7 +225,16 @@ const vailId = async (_: Record<string, any>, value: string) => {
         return Promise.resolve();
     }
 };
-
+// const myValue = computed({
+//     get: () => {
+//         return props.modelValue;
+//     },
+//     set: (val: any) => {
+//         objectValue.value = val;
+//         emit('update:modelValue', val);
+//     },
+// });
+// const myValue = ref(modelRef.geoPoint);
 watch(
     () => props.data,
     (newValue) => {
@@ -226,9 +270,11 @@ const handleCancel = () => {
 };
 
 const handleSave = () => {
+    console.log(modelRef.geoPoint)
     formRef.value
         .validate()
         .then(async (_data: any) => {
+            console.log(_data)
             loading.value = true;
             const obj = { ..._data };
             if (!obj.id) {

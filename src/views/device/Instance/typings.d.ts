@@ -3,6 +3,8 @@ import { MetadataItem } from "../Product/typings";
 export type DeviceInstance = {
   id: string;
   name: string;
+  deviceAddress: string;
+  geoPoint: any;
   describe: string;
   description: string;
   productId: string;
