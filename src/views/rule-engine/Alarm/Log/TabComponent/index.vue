@@ -196,7 +196,7 @@
 
 <script lang="ts" setup>
 import { getImage } from '@/utils/comm';
-import { getOrgList, query, getAlarmProduct } from '@/api/rule-engine/log';
+import { getOrgList, query, queryNative, getAlarmProduct } from '@/api/rule-engine/log';
 import { useAlarmStore } from '@/store/alarm';
 import { storeToRefs } from 'pinia';
 import dayjs from 'dayjs';
@@ -374,7 +374,14 @@ let params: any = ref({
 // let user = JSON.parse(localStorage.getItem("userInfo")|| "null");
   
 const handleSearch = async (params: any) => {
-    const resp: any = await query(params);
+    const user = JSON.parse(localStorage.getItem("userInfo")|| "null");
+    let resp: any
+    if(user.isAdmin){
+        resp = await query(params);
+    }
+    else{
+        resp = await queryNative(params);
+    }
     if (resp.status === 200) {
         const res: any = await getOrgList();
         if (res.status === 200) {
@@ -535,7 +542,8 @@ onMounted(() => {
     const user = JSON.parse(localStorage.getItem("userInfo")|| "null");
     
     if(!user.isAdmin) {
-        params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "targetId"})
+        // params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "targetId"})
+        params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "orgId"})
     }
 });
 </script>

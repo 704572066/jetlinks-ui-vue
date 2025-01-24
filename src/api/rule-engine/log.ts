@@ -26,6 +26,11 @@ export const getOrgList = (params?:any) => server.get('/organization/_query/no-p
 export const query = (data:any) => server.post('/alarm/record/_query/',data);
 
 /**
+ * 原生sql搜索
+ */
+export const queryNative = (data:any) => server.post('/alarm/record/_query_native/',data);
+
+/**
  * 设备产品专用查询
  * @param data 
  * @returns 
