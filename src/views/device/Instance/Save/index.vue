@@ -109,6 +109,25 @@
                         >
                     </j-select>
                 </j-form-item>
+                <j-form-item
+                    name="videoId"
+                    label="监控设备" 
+                    :rules="[]"
+                >
+                    <j-select
+                        showSearch
+                        v-model:value="modelRef.videoId"
+                        placeholder="请选择监控设备"
+                    >
+                        <j-select-option
+                            :value="item.id"
+                            v-for="item in videoList"
+                            :key="item.id"
+                            :label="item.name"
+                            >{{ item.name }}</j-select-option
+                        >
+                    </j-select>
+                </j-form-item>
                 <j-form-item label="所属组织" name="orgId">
                     <j-tree-select
                         showSearch
@@ -186,6 +205,7 @@
 <script lang="ts" setup>
 import { queryNoPagingPost, queryOrgThree } from '@/api/device/product';
 import { isExists, update } from '@/api/device/instance';
+import { queryNoPagingPost as queryVideoNoPagingPost } from '@/api/video/instance';
 import { getImage, onlyMessage } from '@/utils/comm';
 // import GeoComponent from '@/components/GeoComponent/index.vue';
 import encodeQuery from '@/utils/encodeQuery';
@@ -197,12 +217,14 @@ const props = defineProps({
     },
 });
 const productList = ref<Record<string, any>[]>([]);
+const videoList = ref<Record<string, any>[]>([]);
 const loading = ref<boolean>(false);
 const treeList = ref<Record<string, any>[]>([]);
 const formRef = ref();
 
 const modelRef = reactive({
     productId: undefined,
+    videoId: undefined,
     id: undefined,
     name: '',
     deviceAddress: '其他',
@@ -309,6 +331,22 @@ const OrgTree = async () => {
         }
     });
 };
+
+/**
+ * 查询监控设备
+ */
+const VideoDevices = async () => {
+    queryVideoNoPagingPost({
+            paging: false,
+            sorts: [{ name: 'createTime', order: 'desc' }],
+            terms: [],
+        }).then((resp) => {
+            if (resp.status === 200) {
+                videoList.value = resp.result as Record<string, any>[];
+            }
+        });
+};
+
 /**
  * 处理组织key
  */
@@ -326,4 +364,9 @@ const dealOrgTree = (arr: any) => {
  * 初始化
  */
 OrgTree();
+
+/**
+ * 初始化
+ */
+VideoDevices();
 </script>
