@@ -21,8 +21,8 @@
                             name="id"
                             :rules="[
                                 {
-                                    pattern: /^[a-zA-Z0-9_\-]+$/,
-                                    message: '请输入英文或者数字或者-或者_',
+                                    pattern: /^[a-zA-Z0-9_\-:]+$/,
+                                    message: '请输入英文或者数字或者-或者_或者冒号:',
                                 },
                                 {
                                     max: 64,

@@ -136,7 +136,7 @@
 import SaveModal from './Save/save.vue';
 import type { SceneItem } from './typings';
 import { useMenuStore } from 'store/menu';
-import { query, _delete, _action, _execute } from '@/api/rule-engine/scene';
+import { query, _delete, _action, _execute, _copy } from '@/api/rule-engine/scene';
 import {
   queryList,
 } from '@/api/rule-engine/configuration';
@@ -241,6 +241,16 @@ const deleteScene = async (id: string) => {
   }
 }
 
+const copyScene = async (id: string) => {
+  const resp = await _copy(id);
+  if (resp.status === 200) {
+    onlyMessage('操作成功！');
+    sceneRef.value?.reload();
+  } else {
+    onlyMessage('操作失败！', 'error');
+  }
+}
+
 const deleteModal = (id: string) => {
   Modal.confirm({
     title: '该场景已绑定告警，确定删除？',
@@ -302,6 +312,28 @@ const getActions = (
                     } else {
                         onlyMessage('操作失败！', 'error');
                     }
+                },
+            },
+        },
+        {
+            key: 'action',
+            text: '复制',
+            icon: 'CopyOutlined',
+            popConfirm: {
+                title: `确认${
+                    '复制'
+                }?`,
+                onConfirm: async () => {
+                    let response = undefined;
+                    
+                    response = await copyScene(data.id);
+                    
+                    // if (response && response.status === 200) {
+                    //     onlyMessage('操作成功！');
+                    //     sceneRef.value?.reload();
+                    // } else {
+                    //     onlyMessage('操作失败！', 'error');
+                    // }
                 },
             },
         },

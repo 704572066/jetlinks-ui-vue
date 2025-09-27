@@ -13,6 +13,8 @@ export const queryBranch = (data: any, id: string) => server.post(`/scene/branch
 
 export const _delete = (id: string) => server.remove(`/scene/${id}/`);
 
+export const _copy = (id: string) => server.put(`/scene/copy/${id}/`);
+
 export const _action = (id: string, type: '_disable' | '_enable') => server.put(`/scene/${id}/${type}`);
 
 /**
