@@ -37,7 +37,7 @@ import Device from './device/index.vue';
 import User from './user/index.vue';
 import { isNoCommunity } from '@/utils/utils'
 
-const activeKey = ref<'product' | 'device' | 'user'>('product');
+const activeKey = ref<'product' | 'device' | 'user'>('user');
 
 const departmentId = ref<string>('');
 

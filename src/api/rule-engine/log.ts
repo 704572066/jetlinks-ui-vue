@@ -31,6 +31,11 @@ export const query = (data:any) => server.post('/alarm/record/_query/',data);
 export const queryNative = (data:any) => server.post('/alarm/record/_query_native/',data);
 
 /**
+ * 账号绑定多个组织原生sql搜索
+ */
+export const multiOrgQueryNative = (data:any) => server.post('/alarm/record/multi-org/_query_native/',data);
+
+/**
  * 设备产品专用查询
  * @param data 
  * @returns 

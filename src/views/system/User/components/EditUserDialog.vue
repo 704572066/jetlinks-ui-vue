@@ -283,9 +283,9 @@ const form = reactive({
             new Promise((resolve, reject) => {
                 if (!value) return reject('请输入密码');
                 else if (value.length > 64) return reject('最多可输入64个字符');
-                else if (value.length < 8) return reject('密码不能少于8位');
-                else if (!passwordRegEx(value))
-                    return reject('密码必须包含大小写英文和数字');
+                //else if (value.length < 8) return reject('密码不能少于8位');
+                //else if (!passwordRegEx(value))
+                    //return reject('密码必须包含大小写英文和数字');
                 validateField_api('password', value).then((resp: any) => {
                     resp.result.passed
                         ? resolve('')

@@ -196,7 +196,7 @@
 
 <script lang="ts" setup>
 import { getImage } from '@/utils/comm';
-import { getOrgList, query, queryNative, getAlarmProduct } from '@/api/rule-engine/log';
+import { getOrgList, query, queryNative, multiOrgQueryNative, getAlarmProduct } from '@/api/rule-engine/log';
 import { useAlarmStore } from '@/store/alarm';
 import { storeToRefs } from 'pinia';
 import dayjs from 'dayjs';
@@ -380,7 +380,8 @@ const handleSearch = async (params: any) => {
         resp = await query(params);
     }
     else{
-        resp = await queryNative(params);
+        // resp = await queryNative(params);
+        resp = await multiOrgQueryNative(params);
     }
     if (resp.status === 200) {
         const res: any = await getOrgList();
@@ -410,7 +411,8 @@ const search = (data: any) => {
     params.value.terms = [...data?.terms];
     // alert(user.orgList.length)
     if(!user.isAdmin) {
-        params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "targetId"})
+        // params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "targetId"})
+        params.value.terms.push({type: "and", value: user.orgList?.length ? user.orgList.map((org: { id: string }) => org.id): [], termType: "in", column: "orgId"})
     }
     if (props.type !== 'all' && !props.id) {
         params.value.terms.push({
@@ -541,9 +543,12 @@ onMounted(() => {
     }
     const user = JSON.parse(localStorage.getItem("userInfo")|| "null");
     
+    // if(!user.isAdmin) {
+    //     // params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "targetId"})
+    //     params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "orgId"})
+    // }
     if(!user.isAdmin) {
-        // params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "targetId"})
-        params.value.terms.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "orgId"})
+        params.value.terms.push({value: user.orgList?.length ? user.orgList.map((org: { id: string }) => org.id): [], termType: "in", column: "orgId"})
     }
 });
 </script>

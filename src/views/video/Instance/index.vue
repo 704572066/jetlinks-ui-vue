@@ -863,8 +863,11 @@ const handleSearch = (_params: any) => {
     });
     const user = JSON.parse(localStorage.getItem("userInfo")|| "null");
     // alert(user.orgList.length)
+    // if(!user.isAdmin) {
+    //     newParams.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "orgId"})
+    // }
     if(!user.isAdmin) {
-        newParams.push({type: "and", value: user.orgList.length>0?user.orgList[0].id:"", termType: "eq", column: "orgId"})
+        newParams.push({value: user.orgList?.length ? user.orgList.map((org: { id: string }) => org.id): [], termType: "in", column: "orgId"})
     }
     params.value = { terms: newParams || [] };
 };
