@@ -92,7 +92,7 @@ import dayjs from 'dayjs'
 import { isNoCommunity } from '@/utils/utils'
 
 const system = useSystem();
-const AmapKey = system.$state.configInfo.amap?.apiKey;
+// const AmapKey = system.$state.configInfo.amap?.apiKey;
 let productTotal = ref(0);
 let productFooter = ref<Footer[]>([
     {
