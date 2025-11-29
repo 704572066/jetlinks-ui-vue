@@ -119,22 +119,23 @@ const getData = () => {
 };
 
 onMounted(() => {
-  console.log('isNoCommunity')
-    if (isNoCommunity) {
-      serverNode().then((resp: any) => {
-          if (resp.success) {
-              serverNodeOptions.value = resp.result.map((item: any) => ({
-                  label: item.name,
-                  value: item.id,
-              }));
-              if (serverNodeOptions.value.length) {
-                  serverId.value = serverNodeOptions.value[0]?.value;
-              }
-          }
-      });
-    } else {
-      getData()
-    }
+    console.log('isNoCommunity')
+    // if (isNoCommunity) {
+    //   serverNode().then((resp: any) => {
+    //       if (resp.success) {
+    //           serverNodeOptions.value = resp.result.map((item: any) => ({
+    //               label: item.name,
+    //               value: item.id,
+    //           }));
+    //           if (serverNodeOptions.value.length) {
+    //               serverId.value = serverNodeOptions.value[0]?.value;
+    //           }
+    //       }
+    //   });
+    // } else {
+    //   getData()
+    // }
+    getData()
 });
 
 onUnmounted(() => {
