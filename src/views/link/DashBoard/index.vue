@@ -3,7 +3,7 @@
         <div>
             <j-row :gutter="[24, 24]">
                 <j-col :span="24"><TopCard @serviceChange='serviceChange' /> </j-col>
-                <j-col :span="24" v-if="isNoCommunity"><Network :serviceId='serviceId' /></j-col>
+                <!-- <j-col :span="24" v-if="isNoCommunity"><Network :serviceId='serviceId' /></j-col> -->
                 <j-col :span="12"><Cpu :isNoCommunity="isNoCommunity" :serviceId='serviceId'/></j-col>
                 <j-col :span="12"><Jvm :isNoCommunity="isNoCommunity" :serviceId='serviceId'/></j-col>
             </j-row>
