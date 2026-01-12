@@ -7,7 +7,7 @@
             ref="sceneRef"
             :columns="columns"
             :request="query"
-            :defaultParams="{ sorts: [{ name: 'createTime', order: 'desc' }] }"
+            :defaultParams="{ sorts: [{ name: 'name', order: 'desc' }] }"
             :params="params"
         >
             <template #headerTitle>

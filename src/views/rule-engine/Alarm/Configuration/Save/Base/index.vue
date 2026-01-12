@@ -83,6 +83,20 @@
                         >
                     </j-radio-group>
                 </j-form-item>
+
+                <j-form-item label="告警消息是否推送微信公众号" name="wxPush">
+                    <j-radio-group
+                        v-model:value="form.wxPush"
+                        class="invokeSelect"
+                    >
+                        <j-radio :value="true"
+                            >是</j-radio
+                        >
+                        <j-radio :value="false"
+                            >否</j-radio
+                        >
+                    </j-radio-group>
+                </j-form-item>
                                             
                 <j-form-item label="说明" name="description">
                     <j-textarea
@@ -196,6 +210,12 @@ const rule = {
             message: '请选择启动没火操作',
         },
     ],
+    wxPush: [
+        {
+            required: true,
+            message: '请选择是否推送微信公众号',
+        },
+    ],
     description: [
         {
             max: 200,
@@ -209,6 +229,7 @@ let form = ref({
     name: '',
     description: '',
     fireInvoke: false,
+    wxPush: true,
 });
 let options = ref();
 let levelOption = ref();

@@ -11,7 +11,7 @@
                 :columns="columns"
                 :request="query"
                 :defaultParams="{
-                    sorts: [{ name: 'createTime', order: 'desc' }],
+                    sorts: [{ name: 'name', order: 'desc' }],
                 }"
                 :rowSelection="
                     isCheck
