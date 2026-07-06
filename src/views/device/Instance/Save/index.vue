@@ -227,7 +227,7 @@ const modelRef = reactive({
     videoId: undefined,
     id: undefined,
     name: '',
-    deviceAddress: '其他',
+    deviceAddress: '车间',
     geoPoint: '',
     orgId: undefined,
     orgName: '',
